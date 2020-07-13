@@ -77,7 +77,7 @@ if ($localbox->status == 'installed') {
 			h1.heading {
 				color: #66bb6a;
 			}
-			.button.button-primary {
+			.button.button-primary:hover, .button.button-primary:focus {
 				background-color: #66bb6a;	
 				border-color: #4caf50;
 			}
@@ -85,10 +85,10 @@ if ($localbox->status == 'installed') {
 				background-color: #2e7d32;
 				border-color: #2e7d32;
 			}
-			a {
+			a, a:link, a:visited {
 				color: #66bb6a;	
 			}
-			a:hover {
+			a:hover, a:active {
 				color: #2e7d32;
 			}
 			@media (max-width: 1000px) {
