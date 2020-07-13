@@ -1,5 +1,5 @@
 # PHP Localbox
-Your inbox for local development.  View emails without actually sending any email!
+A simple inbox for local development.  View emails without actually sending any email!
 
 Localbox is a simple two-file PHP/MySQL application.  You can easily incorporate it into your existing workflow to route all of your email messages into your Localbox when developing locally.  Messages are stored in a database table instead of actually being sent.  
 
