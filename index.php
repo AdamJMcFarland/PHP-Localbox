@@ -77,11 +77,11 @@ if ($localbox->status == 'installed') {
 			h1.heading {
 				color: #66bb6a;
 			}
-			.button.button-primary:hover, .button.button-primary:focus {
+			.button.button-primary {
 				background-color: #66bb6a;	
 				border-color: #4caf50;
 			}
-			.button.button-primary:hover {
+			.button.button-primary:hover, .button.button-primary:focus {
 				background-color: #2e7d32;
 				border-color: #2e7d32;
 			}
