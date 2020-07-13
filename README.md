@@ -1,9 +1,9 @@
 # PHP Localbox
 Your inbox for local development.  View emails without actually sending any email!
 
-PHP Localbox is a simple two-file PHP/MySQL application.  You can easily incorporate it into your existing workflow to route all of your email messages into your Localbox when developing locally.  Messages are stored in a database table instead of actually being sent.  
+Localbox is a simple two-file PHP/MySQL application.  You can easily incorporate it into your existing workflow to route all of your email messages into your Localbox when developing locally.  Messages are stored in a database table instead of actually being sent.  
 
-You can then view them in your Localbox that is designed to look and feel like an actual inbox.  Localbox supports both plain text and HTML email messages, and has a responsive design for testing on mobile devices.
+You can then view them in your Localbox, which is designed to look and feel like an actual inbox.  Localbox supports both plain text and HTML email messages, and has a responsive design for testing on mobile devices.
 
 ## Screenshots
 
@@ -17,11 +17,12 @@ And here's what an HTML message looks like:
 
 ## Requirements
 
-PHP Localbox was developed for PHP 7+ and MySQL 5.7+ (or equivalent MariaDB database), however it should work on earlier versions.
+Localbox was developed for PHP 7+ and MySQL 5.7+ (or equivalent MariaDB database), however it should work on earlier versions.
 
 ## Installation
 
-To get started you'll need a database user with SELECT, INSERT, UPDATE, and CREATE privileges.  
+To get started you'll need a database user with SELECT, INSERT, UPDATE, and CREATE privileges. 
+
 In the ```Localbox.php``` file, fill out the database information. At a minimum you'll need to enter the user, password, and name.
 
 If your application autoloads classes using something like [spl_autoload_register]( https://www.php.net/manual/en/function.spl-autoload-register.php), you can move the ```Localbox.php``` class file over to that directory.  Then in the ```inbox.php``` file change the ```include``` path to the path to your configuration file that includes the autoloader. 
@@ -60,7 +61,7 @@ Parameter | Required | Description
 ```$reply_to``` | No | The reply-to email address.  If left blank, this will be the ```$sender```
 ```$headers``` | No | A string of additional headers, separated by a CRLF (Carriage Return Line Feed) ```"\r\n"```
 
-Localbox was designed to integrate into your existing workflow.  Instead of attempting to send an email when developing locally, you can instead save that message to your Localbox.  For example, you might have defined a variable ```LOCAL_ENVIRONMENT``` that is set to ```TRUE``` when developing locally and false otherwise.
+Localbox was designed to integrate into your existing workflow.  Instead of attempting and failing to send an email in your local environment, or skipping over sending an email, you can instead save that message to your Localbox.  For example, you might have defined a variable ```LOCAL_ENVIRONMENT``` that is set to ```TRUE``` when developing locally and ```FALSE``` in staging or production environments.
 
 In the past you might have:
 
@@ -84,31 +85,41 @@ if (!LOCAL_ENVIRONMENT) {
 ## FAQ
 
 **Does Localbox actually send any email?**
-Nope, it's just taking the parameters of a message, storing it in a database table, and then presenting them in an inbox-like format to simulate email.
+
+Nope, it's just taking the parameters of a message, storing it in a database table, and then presenting them in an inbox-like format.
 
 **How is the email rendered?**
-The email is included in Localbox using an ```iframe```.  It is displayed as it would be if you outputted the contents into the web browser that you're using to access your Localbox.
+
+The email is included in Localbox using an ```iframe```.  It is displayed as it would be if you outputted the contents into your web browser.
 
 **Can this help with testing design in different email clients?**
+
 Nope.  You'll probably need to test each email client with real emails.  Once you've got your design down though, Localbox is great for testing whether you're sending the correct content.  For instance, you might send customers different order confirmation emails based upon the products that they ordered.
 
 **How do you differentiate between plain text and HTML messages?**
-We check the message content to see if any of the allowable HTML tags defined in  ```$message_allowable_tags``` are included.  
+
+Localbox checks the message content to see if any of the allowable HTML tags defined in  ```$message_allowable_tags``` are included.  
 
 **Do the headers actually do anything?**
+
 Nope.  They're just displayed for your reference.
 
 **Why doesn't my HTML email look right?**
-Try double-checking the ```$message_allowable_tags``` variable at the top of ```Localbox.php```.  The default tags cover most commonly used tags, however you may need to add some more to get your email displaying properly.
+
+Try checking the ```$message_allowable_tags``` variable at the top of ```Localbox.php```.  The default tags cover most commonly used tags, however you may need to add some more to get your email displaying properly.
 
 **Is it responsive?**
+
 Yup.  Try viewing it on your phone to see how messages would look when viewed in a mobile client.
 
 **Can I delete messages?**
-Not currently.  The archive feature is meant to accomplish this.  Once you archive a message it goes to the ```Archived``` tab, which displays the most recent 100 archived messages.  You can always open up your database and delete an invidual message from the ```localbox``` table.
+
+Not currently.  The archive feature is meant to accomplish this.  Once you archive a message it goes to the ```Archived``` tab, which displays the most recent 100 archived messages.  You can always open up your database and delete an individual message from the ```localbox``` table.
 
 ## About
-PHP Localbox was created by [Adam McFarland](https://www.adammcfarland.com/) for internal use within [Pure Adapt, Inc](https://www.pureadapt.com/).  Special thanks to the [Skeleton](http://getskeleton.com/) CSS framework, which is used for the layout of Localbox.
+PHP Localbox was created by [Adam McFarland](https://www.adammcfarland.com/) for internal use within [Pure Adapt, Inc](https://www.pureadapt.com/).  
+
+Special thanks to the [Skeleton](http://getskeleton.com/) CSS framework, which is used for the layout of Localbox.
 
 ## License
 This software is distributed under the [MIT License](LICENSE)
